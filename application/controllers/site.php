@@ -2300,11 +2300,11 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
             $modeldata.=$string;
                 $modeldata.=')'."\n";
                 $modeldata.='{'."\n";
-                $modeldata.='if($image=="")';
-                $modeldata.='{';
-                $modeldata.='$image=$this->'.$tablename.'_model->getimagebyid($id);';
-                $modeldata.='$image=$image->image;';
-                $modeldata.='}';
+                $modeldata.='if($image=="")'."\n";
+                $modeldata.='{'."\n";
+                $modeldata.='$image=$this->'.$tablename.'_model->getimagebyid($id);'."\n";
+                $modeldata.='$image=$image->image;'."\n";
+                $modeldata.='}'."\n";
 
                     $modeldata.='$data=array(';
             $datastring="";
