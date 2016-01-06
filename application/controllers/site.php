@@ -2035,10 +2035,14 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                             
                         if($fieldrow->sqlname=='id')
                         {
+                        } 
+                    if($fieldrow->sqlname=='timestamp')
+                        {
                         }
-//                        else if($fieldtype== 10)
-//                        {
-//                            $controller.='$config["upload_path"] = "./uploads/";';
+                        else if($fieldtype== 10)
+                        {
+                            $image=$this->user_model->uploadImage();
+                            $controller.='$'.$sqlname.'=$this->user_model->uploadImage();'."\n";
 //                            $controller.='$config["allowed_types"] = "gif|jpg|png|jpeg";';
 //                            $controller.='$this->load->library("upload", $config);';
 //                            $controller.='$filename="'.$sqlname.'"';
@@ -2064,8 +2068,8 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
 //                                    $controller.='$'.$sqlname.'=$this->image_lib->dest_image;';
 //                                $controller.='}';
 //                            $controller.='}';
-//                           
-//                        }
+                           
+                        }
                         else
                         {
                             $controller.='$'.$sqlname.'=$this->input->get_post("'.$sqlname.'");'."\n";
@@ -2296,6 +2300,12 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
             $modeldata.=$string;
                 $modeldata.=')'."\n";
                 $modeldata.='{'."\n";
+                $modeldata.='if($image=="")';
+                $modeldata.='{';
+                $modeldata.='$image=$this->'.$tablename.'_model->getimagebyid($id);';
+                $modeldata.='$image=$image->image;';
+                $modeldata.='}';
+
                     $modeldata.='$data=array(';
             $datastring="";
                          foreach($allfields as $fieldrow)
@@ -2331,9 +2341,33 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     $modeldata.='return $query;'."\n";
                 $modeldata.='}'."\n";
             
-            $modeldata.='}'."\n";
+            //imagebyid
+             $modeldata.='public function getimagebyid($id)'."\n";
+                $modeldata.='{'."\n";
+                    $modeldata.='$query=$this->db->query("SELECT `image` FROM `'.$databasename."_".$tablename.'` WHERE `id`=\'$id\'")->row();'."\n";
+                    $modeldata.='return $query;'."\n";
+                $modeldata.='}'."\n";
             
+            $modeldata.='}'."\n";
 //            echo $modeldata;
+            
+             //dropdown
+             $modeldata.='public function getdropdown()'."\n";
+                $modeldata.='{'."\n";
+                    $modeldata.='$query=$this->db->query("SELECT * FROM `'.$databasename."_".$tablename.'` ORDER BY `id` 
+                    ASC")->row();'."\n";
+                    $modeldata.='$return=array('."\n";
+                    $modeldata.='"" => "SELECT OPTION >"'."\n";
+                    $modeldata.=');'."\n";
+                    $modeldata.='foreach($query as $row)'."\n";
+                    $modeldata.='{'."\n";
+                    $modeldata.='$return[$row->id]=$row->name;'."\n";
+                    $modeldata.='}'."\n";
+                    $modeldata.='}'."\n";
+                    $modeldata.='return $return;'."\n";
+                $modeldata.='}'."\n";
+            
+            $modeldata.='}'."\n";
             
            //json
 			
@@ -2502,7 +2536,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
             $createdata="";
             $createdata.='<div class="row">'."\n";
             $createdata.='<div class="col s12">'."\n";
-            $createdata.='<h4 class="pad-left-15">Create '.$tablename.'</h4>'."\n";
+            $createdata.='<h4 class="pad-left-15 capitalize">Create '.$tablename.'</h4>'."\n";
             $createdata.='</div>'."\n";
               $createdata.="<form class='col s12' method='post' action='<?php echo site_url(\"site/create".$tablename."submit\");?>' enctype= 'multipart/form-data'>"."\n";
             foreach($allfields as $fieldrow)
@@ -2647,7 +2681,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
             $editdata='';
             $editdata.='<div class="row">'."\n";
             $editdata.='<div class="col s12">'."\n";
-            $editdata.='<h4 class="pad-left-15">Edit '.$tablename.'</h4>'."\n";
+            $editdata.='<h4 class="pad-left-15 capitalize">Edit '.$tablename.'</h4>'."\n";
             $editdata.='</div>'."\n";
             $editdata.='</div>'."\n";
             $editdata.='<div class="row">'."\n";
