@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2014 at 02:30 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Generation Time: Jan 09, 2016 at 05:37 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `createobackend`
 --
-CREATE DATABASE IF NOT EXISTS `createobackend` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `createobackend`;
 
 -- --------------------------------------------------------
 
@@ -29,11 +27,9 @@ USE `createobackend`;
 --
 
 CREATE TABLE IF NOT EXISTS `accesslevel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accesslevel`
@@ -47,13 +43,35 @@ INSERT INTO `accesslevel` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE IF NOT EXISTS `cart` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `product` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `size` varchar(50) NOT NULL,
+  `color` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user`, `quantity`, `product`, `timestamp`, `size`, `color`) VALUES
+(3, 1, 1, '3', '2015-12-07 10:41:16', '1', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -62,10 +80,9 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 CREATE TABLE IF NOT EXISTS `crudtype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `crudtype`
@@ -84,9 +101,8 @@ INSERT INTO `crudtype` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `demo` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -95,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `demo` (
 --
 
 CREATE TABLE IF NOT EXISTS `field` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `table` int(11) NOT NULL,
   `sqlname` varchar(255) NOT NULL,
   `sqltype` varchar(255) NOT NULL,
@@ -106,9 +122,8 @@ CREATE TABLE IF NOT EXISTS `field` (
   `title` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `placeholder` varchar(255) NOT NULL,
-  `showinview` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `showinview` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `field`
@@ -116,7 +131,40 @@ CREATE TABLE IF NOT EXISTS `field` (
 
 INSERT INTO `field` (`id`, `table`, `sqlname`, `sqltype`, `isprimary`, `defaultvalue`, `isnull`, `autoincrement`, `title`, `type`, `placeholder`, `showinview`) VALUES
 (1, 1, 'sql', '2', 'no', '0', 'no', 'no', 'id', '2', 'id', 'top'),
-(4, 4, 'asa1', '1', 'FALSE', '0', 'TRUE', 'FALSE', 'HTC test', '1', '3', 'top');
+(4, 4, 'asa1', '1', 'FALSE', '0', 'TRUE', 'FALSE', 'HTC test', '1', '3', 'top'),
+(5, 5, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(6, 5, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top'),
+(7, 5, 'email', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Email', '8', 'email', 'top'),
+(8, 5, 'package', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Package', '1', 'package', 'top'),
+(9, 6, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(10, 6, 'text', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Text', '1', 'text', 'top'),
+(11, 6, 'type', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Type', '3', 'type', 'top'),
+(12, 6, 'starttime', '6', 'FALSE', '0', 'FALSE', 'FALSE', 'Start Time', '1', 'Start Time', 'top'),
+(13, 6, 'endtime', '6', 'FALSE', '0', 'FALSE', 'FALSE', 'End Time', '1', 'End Time', 'top'),
+(14, 7, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(15, 7, 'email', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Email', '8', 'Email', 'top'),
+(16, 7, 'question', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Question', '3', 'Question', 'top'),
+(17, 8, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(18, 8, 'title', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Title', '1', 'Title', 'top'),
+(19, 8, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(20, 8, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(21, 8, 'question', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Question', '3', 'Question', 'top'),
+(22, 9, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(23, 9, 'user', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'User', '3', 'User', 'top'),
+(24, 9, 'question', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Question', '3', 'Question', 'top'),
+(25, 9, 'option', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Option', '3', 'Option', 'top'),
+(26, 10, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
+(27, 10, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top'),
+(28, 10, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(29, 11, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
+(30, 11, 'conclusion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion', '3', 'Conclusion', 'top'),
+(31, 11, 'question', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Question', '3', 'Question', 'top'),
+(32, 12, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
+(33, 12, 'conclusion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion', '3', 'Conclusion', 'top'),
+(34, 12, 'suggestion', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Suggestion', '2', 'Suggestion', 'top'),
+(35, 13, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
+(36, 13, 'conclusion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion', '3', 'Conclusion', 'top'),
+(37, 13, 'conclusionsuggestion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion Suggestion', '3', 'Conclusion Suggestion', 'top');
 
 -- --------------------------------------------------------
 
@@ -125,12 +173,11 @@ INSERT INTO `field` (`id`, `table`, `sqlname`, `sqltype`, `isprimary`, `defaultv
 --
 
 CREATE TABLE IF NOT EXISTS `fieldselectfield` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `field` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `value` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fieldselectfield`
@@ -146,10 +193,9 @@ INSERT INTO `fieldselectfield` (`id`, `field`, `name`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fieldtype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fieldtype`
@@ -175,11 +221,10 @@ INSERT INTO `fieldtype` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `fieldvalidation` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `field` int(11) NOT NULL,
-  `validation` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `validation` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fieldvalidation`
@@ -193,14 +238,61 @@ INSERT INTO `fieldvalidation` (`id`, `field`, `validation`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hq_conclusion`
+--
+
+CREATE TABLE IF NOT EXISTS `hq_conclusion` (
+  `id` int(11) NOT NULL,
+  `order` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hq_conclusionfinalsuggestion`
+--
+
+CREATE TABLE IF NOT EXISTS `hq_conclusionfinalsuggestion` (
+  `id` int(11) NOT NULL,
+  `conclusion` int(11) NOT NULL,
+  `conclusionsuggestion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hq_conclusionquestion`
+--
+
+CREATE TABLE IF NOT EXISTS `hq_conclusionquestion` (
+  `id` int(11) NOT NULL,
+  `conclusion` int(11) NOT NULL,
+  `question` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hq_conclusionsuggestion`
+--
+
+CREATE TABLE IF NOT EXISTS `hq_conclusionsuggestion` (
+  `id` int(11) NOT NULL,
+  `conclusion` int(11) NOT NULL,
+  `suggestion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `logintype`
 --
 
 CREATE TABLE IF NOT EXISTS `logintype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logintype`
@@ -215,11 +307,24 @@ INSERT INTO `logintype` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `master_company`
+--
+
+CREATE TABLE IF NOT EXISTS `master_company` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `package` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menu`
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
@@ -228,9 +333,8 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `parent` int(11) NOT NULL,
   `isactive` int(11) NOT NULL,
   `order` int(11) NOT NULL,
-  `icon` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+  `icon` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -281,14 +385,13 @@ INSERT INTO `menuaccess` (`menu`, `access`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `page` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `table` int(11) NOT NULL,
   `navigationname` varchar(255) NOT NULL,
   `navigationtype` varchar(255) NOT NULL,
   `navigationparent` varchar(255) NOT NULL,
-  `crudtype` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `crudtype` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page`
@@ -305,11 +408,10 @@ INSERT INTO `page` (`id`, `table`, `navigationname`, `navigationtype`, `navigati
 --
 
 CREATE TABLE IF NOT EXISTS `pageaccesslevel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `page` int(11) NOT NULL,
-  `accesslevel` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `accesslevel` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pageaccesslevel`
@@ -328,7 +430,7 @@ INSERT INTO `pageaccesslevel` (`id`, `page`, `accesslevel`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `databasename` varchar(255) NOT NULL,
@@ -336,9 +438,8 @@ CREATE TABLE IF NOT EXISTS `project` (
   `hostname` varchar(255) NOT NULL,
   `userpassword` varchar(255) NOT NULL,
   `mandrillid` varchar(255) NOT NULL,
-  `mandrillpassword` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `mandrillpassword` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
@@ -346,7 +447,9 @@ CREATE TABLE IF NOT EXISTS `project` (
 
 INSERT INTO `project` (`id`, `name`, `email`, `databasename`, `databasepassword`, `hostname`, `userpassword`, `mandrillid`, `mandrillpassword`) VALUES
 (1, 'toykraft', 'toykraft@email.com', 'toykraft', 'toykraft123', 'localhost', 'toykraft123', 'toykraftmandrill', 'toykraft123'),
-(2, 'sergy', 'sergy@email.com', 'sergy', 'chintan1234', 'sergy123', 'chintan1234', 'sergy@email.com', 'sergy123');
+(2, 'sergy', 'sergy@email.com', 'sergy', 'chintan1234', 'sergy123', 'chintan1234', 'sergy@email.com', 'sergy123'),
+(3, 'master', 'pooja.wohlig@gmail.com', 'master', 'master', 'localhost', 'master', 'master', 'master'),
+(5, 'hq', 'pooja.wohlig@gmail.com', 'hq', 'hq', 'localhost', 'hq', 'hq', 'hq');
 
 -- --------------------------------------------------------
 
@@ -355,11 +458,10 @@ INSERT INTO `project` (`id`, `name`, `email`, `databasename`, `databasepassword`
 --
 
 CREATE TABLE IF NOT EXISTS `projectaccesslevel` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
-  `accesslevel` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `accesslevel` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `projectaccesslevel`
@@ -376,10 +478,9 @@ INSERT INTO `projectaccesslevel` (`id`, `project`, `accesslevel`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `sqltype` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sqltype`
@@ -400,10 +501,9 @@ INSERT INTO `sqltype` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `statuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `statuses`
@@ -423,11 +523,10 @@ INSERT INTO `statuses` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
-  `tablename` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `tablename` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `table`
@@ -435,7 +534,16 @@ CREATE TABLE IF NOT EXISTS `table` (
 
 INSERT INTO `table` (`id`, `project`, `tablename`) VALUES
 (1, 1, 'category'),
-(4, 1, 'demo');
+(4, 1, 'demo'),
+(5, 3, 'company'),
+(6, 4, 'surveyquestion'),
+(7, 4, 'surveyquestionuser'),
+(8, 4, 'surveyoption'),
+(9, 4, 'surveyquestionanswer'),
+(10, 5, 'conclusion'),
+(11, 5, 'conclusionquestion'),
+(12, 5, 'conclusionsuggestion'),
+(13, 5, 'conclusionfinalsuggestion');
 
 -- --------------------------------------------------------
 
@@ -444,7 +552,7 @@ INSERT INTO `table` (`id`, `project`, `tablename`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -454,23 +562,50 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image` varchar(255) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `socialid` varchar(255) NOT NULL,
-  `logintype` int(11) NOT NULL,
+  `logintype` varchar(255) NOT NULL,
   `json` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `billingaddress` text NOT NULL,
+  `billingcity` varchar(255) NOT NULL,
+  `billingstate` varchar(255) NOT NULL,
+  `billingcountry` varchar(255) NOT NULL,
+  `billingcontact` varchar(255) NOT NULL,
+  `billingpincode` varchar(255) NOT NULL,
+  `shippingaddress` text NOT NULL,
+  `shippingcity` varchar(255) NOT NULL,
+  `shippingcountry` varchar(255) NOT NULL,
+  `shippingstate` varchar(255) NOT NULL,
+  `shippingpincode` varchar(255) NOT NULL,
+  `shippingname` varchar(255) NOT NULL,
+  `shippingcontact` varchar(255) NOT NULL,
+  `currency` varchar(255) NOT NULL,
+  `credit` varchar(255) NOT NULL,
+  `companyname` varchar(255) NOT NULL,
+  `registrationno` varchar(255) NOT NULL,
+  `vatnumber` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `fax` varchar(255) NOT NULL,
+  `gender` int(11) NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `google` varchar(255) NOT NULL,
+  `twitter` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `dob` date NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `state` varchar(255) NOT NULL,
+  `pincode` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`) VALUES
-(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, NULL, '', '', 0, ''),
-(4, 'pratik', '0cb2b62754dfd12b6ed0161d4b447df7', 'pratik@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, 'pratik', '1', 1, ''),
-(5, 'wohlig123', 'wohlig123', 'wohlig1@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', 0, ''),
-(6, 'wohlig1', 'a63526467438df9566c508027d9cb06b', 'wohlig2@wohlig.com', 1, '2014-05-12 06:52:44', 1, NULL, '', '', 0, ''),
-(7, 'Avinash', '7b0a80efe0d324e937bbfc7716fb15d3', 'avinash@wohlig.com', 1, '2014-10-17 06:22:29', 1, NULL, '', '', 0, ''),
-(9, 'avinash', 'a208e5837519309129fa466b0c68396b', 'a@email.com', 2, '2014-12-03 11:06:19', 3, '', '', '123', 1, 'demojson'),
-(13, 'aaa', 'a208e5837519309129fa466b0c68396b', 'aaa3@email.com', 3, '2014-12-04 06:55:42', 3, NULL, '', '1', 2, 'userjson');
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `firstname`, `lastname`, `phone`, `billingaddress`, `billingcity`, `billingstate`, `billingcountry`, `billingcontact`, `billingpincode`, `shippingaddress`, `shippingcity`, `shippingcountry`, `shippingstate`, `shippingpincode`, `shippingname`, `shippingcontact`, `currency`, `credit`, `companyname`, `registrationno`, `vatnumber`, `country`, `fax`, `gender`, `facebook`, `google`, `twitter`, `street`, `address`, `dob`, `city`, `state`, `pincode`) VALUES
+(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'images_(2)1.jpg', '', '', 'Facebook', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '0000-00-00', '', '', ''),
+(6, 'Pooja Thakare', '', 'pooja.wohlig@gmail.com', 3, '2015-12-09 06:02:37', 1, 'https://lh5.googleusercontent.com/-5B1PwZZrwdI/AAAAAAAAAAI/AAAAAAAAABw/J3Hf871N8IE/photo.jpg', '', '103402210128529539675', 'Google', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '103402210128529539675', '', '', '', '0000-00-00', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -479,13 +614,12 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp
 --
 
 CREATE TABLE IF NOT EXISTS `userlog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `onuser` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userlog`
@@ -525,6 +659,320 @@ INSERT INTO `userlog` (`id`, `onuser`, `status`, `description`, `timestamp`) VAL
 (31, 4, 6, 'User Details Edited', '2014-12-03 10:36:49'),
 (32, 8, 6, 'User Details Edited', '2014-12-03 10:47:16');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `product` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `user`, `product`, `timestamp`) VALUES
+(4, 1, '3', '2015-12-08 06:54:34');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accesslevel`
+--
+ALTER TABLE `accesslevel`
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `crudtype`
+--
+ALTER TABLE `crudtype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `demo`
+--
+ALTER TABLE `demo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `field`
+--
+ALTER TABLE `field`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fieldselectfield`
+--
+ALTER TABLE `fieldselectfield`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fieldtype`
+--
+ALTER TABLE `fieldtype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fieldvalidation`
+--
+ALTER TABLE `fieldvalidation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hq_conclusion`
+--
+ALTER TABLE `hq_conclusion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hq_conclusionfinalsuggestion`
+--
+ALTER TABLE `hq_conclusionfinalsuggestion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hq_conclusionquestion`
+--
+ALTER TABLE `hq_conclusionquestion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hq_conclusionsuggestion`
+--
+ALTER TABLE `hq_conclusionsuggestion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logintype`
+--
+ALTER TABLE `logintype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `master_company`
+--
+ALTER TABLE `master_company`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `page`
+--
+ALTER TABLE `page`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pageaccesslevel`
+--
+ALTER TABLE `pageaccesslevel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `projectaccesslevel`
+--
+ALTER TABLE `projectaccesslevel`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sqltype`
+--
+ALTER TABLE `sqltype`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `statuses`
+--
+ALTER TABLE `statuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `table`
+--
+ALTER TABLE `table`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `userlog`
+--
+ALTER TABLE `userlog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accesslevel`
+--
+ALTER TABLE `accesslevel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `crudtype`
+--
+ALTER TABLE `crudtype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `demo`
+--
+ALTER TABLE `demo`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `field`
+--
+ALTER TABLE `field`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `fieldselectfield`
+--
+ALTER TABLE `fieldselectfield`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `fieldtype`
+--
+ALTER TABLE `fieldtype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `fieldvalidation`
+--
+ALTER TABLE `fieldvalidation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `hq_conclusion`
+--
+ALTER TABLE `hq_conclusion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `hq_conclusionfinalsuggestion`
+--
+ALTER TABLE `hq_conclusionfinalsuggestion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `hq_conclusionquestion`
+--
+ALTER TABLE `hq_conclusionquestion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `hq_conclusionsuggestion`
+--
+ALTER TABLE `hq_conclusionsuggestion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `logintype`
+--
+ALTER TABLE `logintype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `master_company`
+--
+ALTER TABLE `master_company`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `page`
+--
+ALTER TABLE `page`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `pageaccesslevel`
+--
+ALTER TABLE `pageaccesslevel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `projectaccesslevel`
+--
+ALTER TABLE `projectaccesslevel`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `sqltype`
+--
+ALTER TABLE `sqltype`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `statuses`
+--
+ALTER TABLE `statuses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `table`
+--
+ALTER TABLE `table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `userlog`
+--
+ALTER TABLE `userlog`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
