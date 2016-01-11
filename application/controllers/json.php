@@ -4,28 +4,9 @@ class Json extends CI_Controller
 	
 	public function test(){
         $getmodels=$this->db->query("SELECT * FROM `table` WHERE `project`=4")->result();
-//        print_r($tablenames);
-          // get comma separated
-        
-//        $arrayformodels="(";
-//        foreach($tablenames as  $key=>$value)
-//        {
-//            if($key==0)
-//                {
-//                    $arrayformodels.=$value->tablename;
-//                }
-//                else
-//                {
-//                    $arrayformodels.=",".$value->tablename;
-//                }
-//            
-//        }
-//        $arrayformodels=")";
-        
-         $arrayformodels="(";
+         $arrayformodels="";
             foreach($getmodels as $key=>$value)
             {
-//            $catid=$row->id;
                 if($key==0)
                 {
                     $arrayformodels.="'".$value->tablename."_model'";
@@ -35,43 +16,28 @@ class Json extends CI_Controller
                     $arrayformodels.=","."'".$value->tablename."_model'";
                 }
             }
-            $arrayformodels.=")";
-        
-        echo $arrayformodels;
-        "$autoload['model'] = array".$arrayformodels;
+            $arrayformodels.=");";
 //        // get uri
-//           $urlforcreatepage=$_SERVER["SCRIPT_FILENAME"];
-//        echo "   server path  ";
-//        echo $urlforcreatepage;
-//        $urlforcreatepage=substr($urlforcreatepage,0,-9);
-//         echo "   server substring  ";
-//        echo $urlforcreatepage;
-//        $urlcreatepage=$urlforcreatepage.'admins/'.$databasename.'/application/config/autoload.php';
-//        echo "                  ";
-//        echo $urlcreatepage;
-//       
-//              $controllerfile = read_file($urlcontrollertest);
-//                    $mnutext = explode('//start', $controllerfile);
-//        
+           $urlforautoload=$_SERVER["SCRIPT_FILENAME"];
+        // C:/xampp/htdocs/createOBackend/index.php
+        $urlforautoload=substr($urlforautoload,0,-9);
+        //C:/xampp/htdocs/createOBackend/    
+        $autoloadurl=$urlforautoload.'admins/test/application/config/autoload.php';
+              // C:/xampp/htdocs/createOBackend/admins//application/config/autoload.php
+       
+              $autoloadurl = read_file($autoloadurl);
+                    $threeparts = explode('/* start */', $autoloadurl);
+        $threepartsmain=substr($threeparts[1],0,-3);
+         $autoloadline = $threepartsmain.",".$arrayformodels;
         
-//      $urlforcontrollertest = $_SERVER['SCRIPT_FILENAME'];
-//        $urlforcontrollertest = substr($urlforcontrollertest, 0, -9);
-//        $urlcontrollertest = $urlforcontrollertest.'application/config/hybridauthlib.php';
-//        for ($i = 0; $i < sizeOf($newtext); ++$i) {
-//            $comp = $newtext[$i]->name;
-//            switch ($comp) {
-//            case 'Google':
-//                {
-//                    $controllerfile = read_file($urlcontrollertest);
-//                    $mnutext = explode('//google', $controllerfile);
-//                    $googletext = "'Google' => array (
-//				'enabled' => true,
-//				'keys'    => array ( 'id' => '".$newtext[$i]->appid."', 'secret' => '".$newtext[$i]->secret."' )
-//			),";
-//                    $googletext = $mnutext[0]."//google\n".$googletext.'//google'.$mnutext[2];
-//                    if (write_file($urlforcontrollertest.'application/config/hybridauthlib.php', $googletext)) {
-//                    }
-//                }
+        
+          $autoloadline =$threeparts[0]."\n".$autoloadline."\n".$threeparts[2];
+                    if (write_file($urlforautoload.'admins/test/application/config/autoload.php', $autoloadline)) {
+                         echo 'File written!';
+                    }
+                    else{
+                         echo 'Unable to write the file';
+                    }
       
     }
  

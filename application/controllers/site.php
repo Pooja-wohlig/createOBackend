@@ -2348,7 +2348,6 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     $modeldata.='return $query;'."\n";
                 $modeldata.='}'."\n";
             
-            $modeldata.='}'."\n";
 //            echo $modeldata;
             
              //dropdown
@@ -2357,17 +2356,15 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     $modeldata.='$query=$this->db->query("SELECT * FROM `'.$databasename."_".$tablename.'` ORDER BY `id` 
                     ASC")->row();'."\n";
                     $modeldata.='$return=array('."\n";
-                    $modeldata.='"" => "SELECT OPTION >"'."\n";
+                    $modeldata.='"" => "Select Option"'."\n";
                     $modeldata.=');'."\n";
                     $modeldata.='foreach($query as $row)'."\n";
                     $modeldata.='{'."\n";
                     $modeldata.='$return[$row->id]=$row->name;'."\n";
                     $modeldata.='}'."\n";
-                    $modeldata.='}'."\n";
                     $modeldata.='return $return;'."\n";
                 $modeldata.='}'."\n";
             
-            $modeldata.='}'."\n";
             
            //json
 			
