@@ -1789,70 +1789,10 @@ class Site extends CI_Controller
         $project=$this->db->query("SELECT * FROM `project` WHERE `id`='$id'")->row();
         $projectid=$id;
         $databasename=$project->name;
-        $this->load->dbforge();
-        
-        
-        // DATABASE NAME
-         $dblname=$databasename;
-           $urlfordatabase=$_SERVER["SCRIPT_FILENAME"];
-        // C:/xampp/htdocs/createOBackend/index.php
-        $urlfordatabase=substr($urlfordatabase,0,-9);
-        //C:/xampp/htdocs/createOBackend/    
-        $databaseurl=$urlfordatabase.'admins/'.$databasename.'/application/config/database.php';
-              // C:/xampp/htdocs/createOBackend/admins//application/config/autoload.php
-       
-              $databaseurl = read_file($databaseurl);
-                    $parts = explode('/* dbstarts */', $databaseurl);
-        $partsmain=substr($parts[1],0,-15);
-         $databaseline = $partsmain.$dblname."';";
-          $databaseline =$parts[0]."\n".$databaseline."\n".$parts[2];
-                    if (write_file($urlfordatabase.'admins/'.$databasename.'/application/config/database.php', $databaseline)) {
-                         echo 'File written!';
-                    }
-                    else{
-                         echo 'Unable to write the file';
-                    }
-        
-        // DATABASE NAME END
-        
-        
+        $this->load->dbforge();        
         $tablenames=$this->db->query("SELECT * FROM `table` WHERE `project`='$id'")->result();
         
-        // AUTOLOAD STARTS
-        $arrayformodels="";
-            foreach($tablenames as $key=>$value)
-            {
-                if($key==0)
-                {
-                    $arrayformodels.="'".$value->tablename."_model'";
-                }
-                else
-                {
-                    $arrayformodels.=","."'".$value->tablename."_model'";
-                }
-            }
-            $arrayformodels.=");";
-        
-        //        // get uri
-           $urlforautoload=$_SERVER["SCRIPT_FILENAME"];
-        // C:/xampp/htdocs/createOBackend/index.php
-        $urlforautoload=substr($urlforautoload,0,-9);
-        //C:/xampp/htdocs/createOBackend/    
-        $autoloadurl=$urlforautoload.'admins/'.$databasename.'/application/config/autoload.php';
-              // C:/xampp/htdocs/createOBackend/admins//application/config/autoload.php
-       
-              $autoloadurl = read_file($autoloadurl);
-                    $threeparts = explode('/* start */', $autoloadurl);
-        $threepartsmain=substr($threeparts[1],0,-3);
-         $autoloadline = $threepartsmain.",".$arrayformodels;
-          $autoloadline =$threeparts[0]."\n".$autoloadline."\n".$threeparts[2];
-                    if (write_file($urlforautoload.'admins/'.$databasename.'/application/config/autoload.php', $autoloadline)) {
-                         echo 'File written!';
-                    }
-                    else{
-                         echo 'Unable to write the file';
-                    }
-        // AUTOLOAD ENDS
+  
         
 //        print_r($tablenames);
         foreach ($tablenames as $rowtable)
@@ -1860,6 +1800,8 @@ class Site extends CI_Controller
 //            echo $rowtable->id;
             $tableid=$rowtable->id;
             $tablename=$rowtable->tablename;
+            
+            
         $allfields=$this->db->query("SELECT `field`.`id`, `field`.`table`, `field`.`sqlname`, `field`.`sqltype`, `field`.`isprimary`, `field`.`defaultvalue`, `field`.`isnull`, `field`.`autoincrement`, `field`.`title`, `field`.`type`, `field`.`placeholder`, `field`.`showinview`,`sqltype`.`name` AS `sqltypename`,`fieldtype`.`name` AS `fieldtypename`,`table`.`tablename` AS `tablename`
 FROM `field`
 LEFT OUTER JOIN `table` ON `field`.`table`=`table`.`id`
@@ -1932,11 +1874,68 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
         $project=$this->db->query("SELECT * FROM `project` WHERE `id`='$id'")->row();
         $databasename=$project->name;
         $this->load->dbforge();
+                // DATABASE NAME
+         $dblname=$databasename;
+           $urlfordatabase=$_SERVER["SCRIPT_FILENAME"];
+        // C:/xampp/htdocs/createOBackend/index.php
+        $urlfordatabase=substr($urlfordatabase,0,-9);
+        //C:/xampp/htdocs/createOBackend/    
+        $databaseurl=$urlfordatabase.'admins/'.$databasename.'/application/config/database.php';
+              // C:/xampp/htdocs/createOBackend/admins//application/config/autoload.php
+       
+              $databaseurl = read_file($databaseurl);
+                    $parts = explode('/* dbstarts */', $databaseurl);
+        $partsmain=substr($parts[1],0,-15);
+         $databaseline = $partsmain.$dblname."';";
+          $databaseline =$parts[0]."\n".$databaseline."\n".$parts[2];
+                    if (write_file($urlfordatabase.'admins/'.$databasename.'/application/config/database.php', $databaseline)) {
+                         echo 'File written!';
+                    }
+                    else{
+                         echo 'Unable to write the file';
+                    }
         
+        // DATABASE NAME END
         
         
         
         $tablenames=$this->db->query("SELECT * FROM `table` WHERE `project`='$id'")->result();
+              // AUTOLOAD STARTS
+        $arrayformodels="";
+            foreach($tablenames as $key=>$value)
+            {
+                if($key==0)
+                {
+                    $arrayformodels.="'".$value->tablename."_model'";
+                }
+                else
+                {
+                    $arrayformodels.=","."'".$value->tablename."_model'";
+                }
+            }
+            $arrayformodels.=");";
+        
+        //        // get uri
+           $urlforautoload=$_SERVER["SCRIPT_FILENAME"];
+        // C:/xampp/htdocs/createOBackend/index.php
+        $urlforautoload=substr($urlforautoload,0,-9);
+        //C:/xampp/htdocs/createOBackend/    
+        $autoloadurl=$urlforautoload.'admins/'.$databasename.'/application/config/autoload.php';
+              // C:/xampp/htdocs/createOBackend/admins//application/config/autoload.php
+       
+              $autoloadurl = read_file($autoloadurl);
+                    $threeparts = explode('/* start */', $autoloadurl);
+        $threepartsmain=substr($threeparts[1],0,-3);
+         $autoloadline = $threepartsmain.",".$arrayformodels;
+          $autoloadline =$threeparts[0]."\n".$autoloadline."\n".$threeparts[2];
+                    if (write_file($urlforautoload.'admins/'.$databasename.'/application/config/autoload.php', $autoloadline)) {
+                         echo 'File written!';
+                    }
+                    else{
+                         echo 'Unable to write the file';
+                    }
+        // AUTOLOAD ENDS
+        
 //        print_r($tablenames);
         $alljson="";
         $alljson.='<?php if ( ! defined("BASEPATH")) exit("No direct script access allowed");
