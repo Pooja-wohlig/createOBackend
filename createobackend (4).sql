@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2016 at 05:37 AM
+-- Generation Time: Jan 12, 2016 at 05:55 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -107,6 +107,17 @@ CREATE TABLE IF NOT EXISTS `demo` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `demo_demotable`
+--
+
+CREATE TABLE IF NOT EXISTS `demo_demotable` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `field`
 --
 
@@ -123,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `field` (
   `type` varchar(255) NOT NULL,
   `placeholder` varchar(255) NOT NULL,
   `showinview` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `field`
@@ -164,7 +175,11 @@ INSERT INTO `field` (`id`, `table`, `sqlname`, `sqltype`, `isprimary`, `defaultv
 (34, 12, 'suggestion', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Suggestion', '2', 'Suggestion', 'top'),
 (35, 13, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'Id', '1', 'id', 'top'),
 (36, 13, 'conclusion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion', '3', 'Conclusion', 'top'),
-(37, 13, 'conclusionsuggestion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion Suggestion', '3', 'Conclusion Suggestion', 'top');
+(37, 13, 'conclusionsuggestion', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Conclusion Suggestion', '3', 'Conclusion Suggestion', 'top'),
+(38, 14, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
+(39, 14, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top'),
+(40, 15, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
+(41, 15, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top');
 
 -- --------------------------------------------------------
 
@@ -234,54 +249,6 @@ INSERT INTO `fieldvalidation` (`id`, `field`, `validation`) VALUES
 (1, 1, 'required'),
 (2, 2, 'trim'),
 (4, 1, 'trim');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hq_conclusion`
---
-
-CREATE TABLE IF NOT EXISTS `hq_conclusion` (
-  `id` int(11) NOT NULL,
-  `order` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hq_conclusionfinalsuggestion`
---
-
-CREATE TABLE IF NOT EXISTS `hq_conclusionfinalsuggestion` (
-  `id` int(11) NOT NULL,
-  `conclusion` int(11) NOT NULL,
-  `conclusionsuggestion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hq_conclusionquestion`
---
-
-CREATE TABLE IF NOT EXISTS `hq_conclusionquestion` (
-  `id` int(11) NOT NULL,
-  `conclusion` int(11) NOT NULL,
-  `question` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `hq_conclusionsuggestion`
---
-
-CREATE TABLE IF NOT EXISTS `hq_conclusionsuggestion` (
-  `id` int(11) NOT NULL,
-  `conclusion` int(11) NOT NULL,
-  `suggestion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -439,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `userpassword` varchar(255) NOT NULL,
   `mandrillid` varchar(255) NOT NULL,
   `mandrillpassword` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
@@ -449,7 +416,9 @@ INSERT INTO `project` (`id`, `name`, `email`, `databasename`, `databasepassword`
 (1, 'toykraft', 'toykraft@email.com', 'toykraft', 'toykraft123', 'localhost', 'toykraft123', 'toykraftmandrill', 'toykraft123'),
 (2, 'sergy', 'sergy@email.com', 'sergy', 'chintan1234', 'sergy123', 'chintan1234', 'sergy@email.com', 'sergy123'),
 (3, 'master', 'pooja.wohlig@gmail.com', 'master', 'master', 'localhost', 'master', 'master', 'master'),
-(5, 'hq', 'pooja.wohlig@gmail.com', 'hq', 'hq', 'localhost', 'hq', 'hq', 'hq');
+(5, 'hq', 'pooja.wohlig@gmail.com', 'hq', 'hq', 'localhost', 'hq', 'hq', 'hq'),
+(6, 'test', 'pooja.wohlig@gmail.com', 'test', 'test', 'localhost', 'test', 'test', 'test'),
+(7, 'demo', 'pooja.wohlig@gmail.com', 'demo', 'demo', 'localhost', 'demo', 'demo', 'demo');
 
 -- --------------------------------------------------------
 
@@ -526,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `table` (
   `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
   `tablename` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `table`
@@ -543,7 +512,21 @@ INSERT INTO `table` (`id`, `project`, `tablename`) VALUES
 (10, 5, 'conclusion'),
 (11, 5, 'conclusionquestion'),
 (12, 5, 'conclusionsuggestion'),
-(13, 5, 'conclusionfinalsuggestion');
+(13, 5, 'conclusionfinalsuggestion'),
+(14, 6, 'exam'),
+(15, 7, 'demotable');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `title`
+--
+
+CREATE TABLE IF NOT EXISTS `title` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -714,6 +697,12 @@ ALTER TABLE `demo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `demo_demotable`
+--
+ALTER TABLE `demo_demotable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `field`
 --
 ALTER TABLE `field`
@@ -735,30 +724,6 @@ ALTER TABLE `fieldtype`
 -- Indexes for table `fieldvalidation`
 --
 ALTER TABLE `fieldvalidation`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hq_conclusion`
---
-ALTER TABLE `hq_conclusion`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hq_conclusionfinalsuggestion`
---
-ALTER TABLE `hq_conclusionfinalsuggestion`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hq_conclusionquestion`
---
-ALTER TABLE `hq_conclusionquestion`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hq_conclusionsuggestion`
---
-ALTER TABLE `hq_conclusionsuggestion`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -822,6 +787,12 @@ ALTER TABLE `table`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `title`
+--
+ALTER TABLE `title`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -869,10 +840,15 @@ ALTER TABLE `crudtype`
 ALTER TABLE `demo`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `demo_demotable`
+--
+ALTER TABLE `demo_demotable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `fieldselectfield`
 --
@@ -888,26 +864,6 @@ ALTER TABLE `fieldtype`
 --
 ALTER TABLE `fieldvalidation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `hq_conclusion`
---
-ALTER TABLE `hq_conclusion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hq_conclusionfinalsuggestion`
---
-ALTER TABLE `hq_conclusionfinalsuggestion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hq_conclusionquestion`
---
-ALTER TABLE `hq_conclusionquestion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hq_conclusionsuggestion`
---
-ALTER TABLE `hq_conclusionsuggestion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
@@ -937,7 +893,7 @@ ALTER TABLE `pageaccesslevel`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `projectaccesslevel`
 --
@@ -957,7 +913,12 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `table`
 --
 ALTER TABLE `table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `title`
+--
+ALTER TABLE `title`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
