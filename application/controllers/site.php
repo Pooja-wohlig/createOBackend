@@ -2422,6 +2422,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     $modeldata.='}'."\n";
                     $modeldata.='return $return;'."\n";
                 $modeldata.='}'."\n";
+                $modeldata.='}'."\n";
             
             
            //json
