@@ -1925,7 +1925,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
        
               $autoloadurl = read_file($autoloadurl);
                     $threeparts = explode('/* start */', $autoloadurl);
-        $threepartsmain=substr($threeparts[1],0,-3);
+        $threepartsmain=substr($threeparts[1],0,-4);
          $autoloadline = $threepartsmain.",".$arrayformodels;
           $autoloadline =$threeparts[0]."\n".$autoloadline."\n".$threeparts[2];
                     if (write_file($urlforautoload.'admins/'.$databasename.'/application/config/autoload.php', $autoloadline)) {
