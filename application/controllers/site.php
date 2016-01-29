@@ -2097,10 +2097,10 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     if($fieldrow->sqlname=='timestamp')
                         {
                         }
-                        else if($fieldtype== 10)
-                        {
-                            $image=$this->user_model->uploadImage();
-                            $controller.='$'.$sqlname.'=$this->user_model->uploadImage();'."\n";
+//                        else if($fieldtype== 10)
+//                        {
+//                            $image=$this->user_model->uploadImage();
+//                            $controller.='$'.$sqlname.'=$this->user_model->uploadImage();'."\n";
 //                            $controller.='$config["allowed_types"] = "gif|jpg|png|jpeg";';
 //                            $controller.='$this->load->library("upload", $config);';
 //                            $controller.='$filename="'.$sqlname.'"';
@@ -2127,7 +2127,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
 //                                $controller.='}';
 //                            $controller.='}';
                            
-                        }
+//                        }
                         else
                         {
                             $controller.='$'.$sqlname.'=$this->input->get_post("'.$sqlname.'");'."\n";
