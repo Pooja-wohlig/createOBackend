@@ -2510,7 +2510,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
             $viewdata.='<div class="col s12">'."\n";
             $viewdata.='<div class="row">'."\n";
             $viewdata.='<div class="col s12 drawchintantable">'."\n";
-             $viewdata.='<?php $this->chintantable->createsearch(" List of '.$tablename.'");?>'."\n";
+             $viewdata.='<?php $this->chintantable->createsearch("'.$tablename.'");?>'."\n";
              $viewdata.='<table class="highlight responsive-table">'."\n";
              $viewdata.='<thead>'."\n";
              $viewdata.='<tr>'."\n";
@@ -2563,7 +2563,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
 //                                    }
                         }
 //              $confirm='return confirm(\"Are you sure you want to delete?\")';
-            $viewdata.="<td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/edit".$tablename."?id=');?>\"+resultrow.".$endtext."+\"' data-position='top' data-delay='50' data-tooltip='Edit'><i class='fa fa-pencil propericon'></i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/delete".$tablename."?id='); ?>\"+resultrow.".$endtext."+\"' data-position='top' data-delay='50' data-tooltip='Delete'><i class='material-icons propericon'>delete</i></a></td>";
+            $viewdata.="<td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/edit".$tablename."?id=');?>\"+resultrow.".$endtext."+\"' data-position='top' data-delay='50' data-tooltip='Edit'><i class='fa fa-pencil propericon'></i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\") href='<?php echo site_url('site/delete".$tablename."?id='); ?>\"+resultrow.".$endtext."+\"' data-position='top' data-delay='50' data-tooltip='Delete'><i class='material-icons propericon'>delete</i></a></td>";
             
 //            $viewdata.=endtext();
             $viewdata.='</tr>';
