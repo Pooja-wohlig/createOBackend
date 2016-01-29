@@ -1936,6 +1936,25 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
                     }
         // AUTOLOAD ENDS
         
+//INSERT QUERY TO INSERT INTO MENU TABLE
+        $tablenames=$this->db->query("SELECT * FROM `table` WHERE `project`='$id'")->result();
+        foreach($tablenames as $row)
+        {
+            $data = array(
+           'name' => ucwords($row->tablename),
+           'description' => '',
+           'keyword' => '',
+           'url' => 'site/view'.$row->tablename,
+           'linktype' => '1',
+           'parent' => '0',
+           'isactive' => '1',
+           'order' => '1',
+           'icon' => 'icon-dashboard'
+            );
+
+            $this->db->insert('menu1', $data); 
+        }
+        
 //        print_r($tablenames);
         $alljson="";
         $alljson.='<?php if ( ! defined("BASEPATH")) exit("No direct script access allowed");
