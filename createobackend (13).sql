@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2016 at 05:55 AM
+-- Generation Time: Feb 02, 2016 at 07:38 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -118,6 +118,21 @@ CREATE TABLE IF NOT EXISTS `demo_demotable` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dtest_article`
+--
+
+CREATE TABLE IF NOT EXISTS `dtest_article` (
+  `id` int(11) NOT NULL,
+  `views` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `field`
 --
 
@@ -134,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `field` (
   `type` varchar(255) NOT NULL,
   `placeholder` varchar(255) NOT NULL,
   `showinview` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `field`
@@ -179,7 +194,109 @@ INSERT INTO `field` (`id`, `table`, `sqlname`, `sqltype`, `isprimary`, `defaultv
 (38, 14, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
 (39, 14, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top'),
 (40, 15, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'Id', '1', 'id', 'top'),
-(41, 15, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top');
+(41, 15, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'name', 'top'),
+(42, 16, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'id', '1', 'id', 'top'),
+(43, 16, 'title', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'title', '1', 'title', 'top'),
+(44, 16, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'image', '10', 'image', 'top'),
+(45, 16, 'content', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'content', '1', 'content', 'top'),
+(46, 16, 'timestamp', '4', 'FALSE', '0', 'FALSE', 'FALSE', 'timestamp', '1', 'timestamp', 'top'),
+(47, 16, 'views', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'views', '1', 'views', 'top'),
+(51, 18, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(52, 18, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(53, 19, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(54, 19, 'played', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'played', '1', 'Played', 'top'),
+(55, 19, 'wins', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Wins', '1', 'Wins', 'top'),
+(56, 19, 'lost', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Lost', '1', 'Lost', 'top'),
+(57, 19, 'point', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Point', '1', 'Point', 'top'),
+(58, 20, 'id', '1', 'TRUE', '0', 'TRUE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(59, 20, 'timestamp', '4', 'FALSE', '0', 'FALSE', 'FALSE', 'Timestamp', '1', 'Timestamp', 'top'),
+(60, 20, 'team1', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Team1', '1', 'Team1', 'top'),
+(61, 20, 'team2', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Team2', '1', 'Team2', 'top'),
+(62, 20, 'stadium', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'stadium', '3', 'stadium', 'top'),
+(63, 20, 'bookticket', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Book Ticket', '1', 'Book Ticket', 'top'),
+(64, 21, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(65, 21, 'product', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Product', '1', 'Product', 'top'),
+(66, 21, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(67, 21, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(68, 21, 'link', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Link', '1', 'Link', 'top'),
+(69, 22, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(70, 22, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(71, 22, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(72, 22, 'link', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Link', '1', 'Link', 'top'),
+(73, 22, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(74, 23, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(75, 23, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(76, 23, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(77, 23, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(78, 24, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(79, 24, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(80, 24, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(81, 24, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(82, 24, 'gallery', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Gallery', '3', 'Gallery', 'top'),
+(83, 25, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(84, 25, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(85, 25, 'content', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Content', '2', 'Content', 'top'),
+(86, 25, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(87, 25, 'type', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Type', '3', 'Type', 'top'),
+(88, 25, 'timestamp', '4', 'FALSE', '0', 'FALSE', 'FALSE', 'Timestamp', '1', 'Timestamp', 'top'),
+(89, 26, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(90, 26, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(91, 26, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(92, 26, 'type', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Type', '3', 'Type', 'top'),
+(93, 26, 'nationality', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Nationality', '1', 'Nationality', 'top'),
+(94, 26, 'dob', '6', 'FALSE', '0', 'FALSE', 'FALSE', 'Dob', '11', 'Dob', 'top'),
+(95, 26, 'jerseyno', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Jerseyno', '1', 'Jerseyno', 'top'),
+(96, 26, 'about', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'About', '2', 'About', 'top'),
+(97, 27, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(98, 27, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(99, 27, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(100, 27, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(101, 28, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(102, 28, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(103, 28, 'wallpapercategory', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Wallpaper Category', '3', 'Wallpaper Category', 'top'),
+(104, 28, 'image1', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image1', '1', 'Image1', 'top'),
+(105, 28, 'image2', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image2', '1', 'Image2', 'top'),
+(106, 28, 'image3', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image3', '1', 'Image3', 'top'),
+(107, 28, 'image4', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image4', '1', 'Image4', 'top'),
+(108, 28, 'image5', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image5', '1', 'Image5', 'top'),
+(109, 28, 'image6', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image6', '1', 'Image6', 'top'),
+(110, 29, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(111, 29, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(112, 29, 'content', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Content', '2', 'Content', 'top'),
+(113, 30, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(114, 30, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(115, 30, 'content', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Content', '2', 'Content', 'top'),
+(116, 30, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(117, 30, 'type', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Type', '3', 'Type', 'top'),
+(118, 31, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(119, 31, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(120, 31, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(121, 32, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(122, 32, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(123, 32, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(124, 32, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(125, 33, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(126, 33, 'videogallery', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Video Gallery', '3', 'Video Gallery', 'top'),
+(127, 33, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(128, 33, 'url', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'url', '1', 'url', 'top'),
+(129, 33, 'order', '1', 'FALSE', '0', 'FALSE', 'FALSE', 'Order', '1', 'Order', 'top'),
+(130, 33, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '1', 'Image', 'top'),
+(131, 34, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(132, 34, 'email', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Email', '8', 'Email', 'top'),
+(133, 34, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(134, 34, 'comment', '5', 'FALSE', '0', 'FALSE', 'FALSE', 'Comment', '2', 'Comment', 'top'),
+(135, 34, 'phone', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Phone', '1', 'Phone', 'top'),
+(136, 34, 'timestamp', '4', 'FALSE', '0', 'FALSE', 'FALSE', 'Timestamp', '1', 'Timestamp', 'top'),
+(137, 35, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(138, 35, 'email', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Email', '8', 'Email', 'top'),
+(139, 35, 'timestamp', '4', 'FALSE', '0', 'FALSE', 'FALSE', 'Timestamp', '1', 'Timestamp', 'top'),
+(140, 14, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '10', 'Image', 'top'),
+(141, 36, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(142, 36, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(143, 36, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '10', 'Image', 'top'),
+(144, 37, 'id', '1', 'TRUE', '0', 'FALSE', 'TRUE', 'ID', '1', 'ID', 'top'),
+(145, 37, 'name', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Name', '1', 'Name', 'top'),
+(146, 37, 'image', '2', 'FALSE', '0', 'FALSE', 'FALSE', 'Image', '10', 'Image', 'top');
 
 -- --------------------------------------------------------
 
@@ -318,6 +435,33 @@ INSERT INTO `menu` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu1`
+--
+
+CREATE TABLE IF NOT EXISTS `menu1` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `keyword` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `linktype` varchar(255) NOT NULL,
+  `parent` int(11) NOT NULL,
+  `isactive` int(11) NOT NULL,
+  `order` int(11) NOT NULL,
+  `icon` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu1`
+--
+
+INSERT INTO `menu1` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `parent`, `isactive`, `order`, `icon`) VALUES
+(1, 'Pooja', '', '', 'site/viewpooja', '1', 0, 1, 1, 'icon-dashboard'),
+(2, 'Jagruti', '', '', 'site/viewjagruti', '1', 0, 1, 1, 'icon-dashboard');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menuaccess`
 --
 
@@ -406,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `userpassword` varchar(255) NOT NULL,
   `mandrillid` varchar(255) NOT NULL,
   `mandrillpassword` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `project`
@@ -418,7 +562,10 @@ INSERT INTO `project` (`id`, `name`, `email`, `databasename`, `databasepassword`
 (3, 'master', 'pooja.wohlig@gmail.com', 'master', 'master', 'localhost', 'master', 'master', 'master'),
 (5, 'hq', 'pooja.wohlig@gmail.com', 'hq', 'hq', 'localhost', 'hq', 'hq', 'hq'),
 (6, 'test', 'pooja.wohlig@gmail.com', 'test', 'test', 'localhost', 'test', 'test', 'test'),
-(7, 'demo', 'pooja.wohlig@gmail.com', 'demo', 'demo', 'localhost', 'demo', 'demo', 'demo');
+(7, 'demo', 'pooja.wohlig@gmail.com', 'demo', 'demo', 'localhost', 'demo', 'demo', 'demo'),
+(8, 'dtest', 'vinodbeloshe12@gmail.com', 'dtest', 'dtest', 'localhost', 'dtest', 'dtest', 'dtest'),
+(9, 'jpp', 'pooja@wohlig.com', 'jpp', 'jpp', 'localhost', 'jpp', 'jpp', 'jpp'),
+(10, 'testagain', 'pooja@wohlig.com', 'testagain', 'testagain', 'localhost', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -495,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `table` (
   `id` int(11) NOT NULL,
   `project` int(11) NOT NULL,
   `tablename` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `table`
@@ -514,7 +661,64 @@ INSERT INTO `table` (`id`, `project`, `tablename`) VALUES
 (12, 5, 'conclusionsuggestion'),
 (13, 5, 'conclusionfinalsuggestion'),
 (14, 6, 'exam'),
-(15, 7, 'demotable');
+(15, 7, 'demotable'),
+(16, 8, 'article'),
+(18, 9, 'stadium'),
+(19, 9, 'point'),
+(20, 9, 'schedule'),
+(21, 9, 'shop'),
+(22, 9, 'merchandize'),
+(23, 9, 'gallery'),
+(24, 9, 'galleryslide'),
+(25, 9, 'news'),
+(26, 9, 'players'),
+(27, 9, 'wallpapercategory'),
+(28, 9, 'wallpaper'),
+(29, 9, 'pages'),
+(30, 9, 'team'),
+(31, 9, 'sponsor'),
+(32, 9, 'videogallery'),
+(33, 9, 'videos'),
+(34, 9, 'contactus'),
+(35, 9, 'subscribe'),
+(36, 10, 'pooja'),
+(37, 10, 'jagruti');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testagain_jagruti`
+--
+
+CREATE TABLE IF NOT EXISTS `testagain_jagruti` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `testagain_pooja`
+--
+
+CREATE TABLE IF NOT EXISTS `testagain_pooja` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_exam`
+--
+
+CREATE TABLE IF NOT EXISTS `test_exam` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -703,6 +907,12 @@ ALTER TABLE `demo_demotable`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dtest_article`
+--
+ALTER TABLE `dtest_article`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `field`
 --
 ALTER TABLE `field`
@@ -745,6 +955,12 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `menu1`
+--
+ALTER TABLE `menu1`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `page`
 --
 ALTER TABLE `page`
@@ -784,6 +1000,24 @@ ALTER TABLE `statuses`
 -- Indexes for table `table`
 --
 ALTER TABLE `table`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testagain_jagruti`
+--
+ALTER TABLE `testagain_jagruti`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testagain_pooja`
+--
+ALTER TABLE `testagain_pooja`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `test_exam`
+--
+ALTER TABLE `test_exam`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -845,10 +1079,15 @@ ALTER TABLE `demo`
 ALTER TABLE `demo_demotable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `dtest_article`
+--
+ALTER TABLE `dtest_article`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `field`
 --
 ALTER TABLE `field`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=147;
 --
 -- AUTO_INCREMENT for table `fieldselectfield`
 --
@@ -880,6 +1119,11 @@ ALTER TABLE `master_company`
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
+-- AUTO_INCREMENT for table `menu1`
+--
+ALTER TABLE `menu1`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
@@ -893,7 +1137,7 @@ ALTER TABLE `pageaccesslevel`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `projectaccesslevel`
 --
@@ -913,7 +1157,22 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT for table `table`
 --
 ALTER TABLE `table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `testagain_jagruti`
+--
+ALTER TABLE `testagain_jagruti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `testagain_pooja`
+--
+ALTER TABLE `testagain_pooja`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `test_exam`
+--
+ALTER TABLE `test_exam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `title`
 --
