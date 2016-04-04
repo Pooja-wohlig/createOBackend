@@ -2431,7 +2431,7 @@ LEFT OUTER JOIN `fieldtype` ON `field`.`type`=`fieldtype`.`id` WHERE `field`.`ta
              $modeldata.='public function getdropdown()'."\n";
                 $modeldata.='{'."\n";
                     $modeldata.='$query=$this->db->query("SELECT * FROM `'.$databasename."_".$tablename.'` ORDER BY `id` 
-                    ASC")->row();'."\n";
+                    ASC")->result();'."\n";
                     $modeldata.='$return=array('."\n";
                     $modeldata.='"" => "Select Option"'."\n";
                     $modeldata.=');'."\n";

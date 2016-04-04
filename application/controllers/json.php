@@ -15,7 +15,7 @@ class Json extends CI_Controller
            $content.=$parts[$i].'$image=$this->menu_model->createImage();';
          }
          $content=$content.end($parts);
-                    if (write_file('C:/xampp/htdocs/testagain/application/controllers/site.php', $content)) {
+                    if (write_file('C:/xampp/htdocs/euro/application/controllers/site.php', $content)) {
                          echo 'File written!';
                     }
                     else{
